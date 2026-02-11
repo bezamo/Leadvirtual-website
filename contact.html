@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin & Executive Virtual Assistants - Lead Virtual</title>
+  <title>Contact Us - Lead Virtual</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+/* CSS Variables */
 :root {
   --bg-dark: #0b1527;
   --bg-dark-mid: #0f1d32;
@@ -34,273 +35,143 @@
   --radius-lg: 14px;
   --radius-xl: 20px;
   --radius-2xl: 28px;
-  --radius-full: 9999px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
   --shadow: 0 4px 16px rgba(0,0,0,0.08);
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
-  --shadow-dark: 0 12px 40px rgba(0,0,0,0.4);
   --transition: 0.2s ease;
 }
 
+/* Base Styles */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--gray-700); background: var(--white); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--gray-700); background: var(--gray-50); -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
-ul, ol { list-style: none; }
+ul { list-style: none; }
 .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
 /* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; font-size: 15px; font-weight: 600; border-radius: var(--radius-lg); transition: all var(--transition); }
-.btn-primary { color: var(--white); background: var(--blue-primary); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; font-size: 15px; font-weight: 600; border-radius: var(--radius-lg); transition: all var(--transition); cursor: pointer; }
+.btn-primary { color: var(--white); background: var(--blue-primary); border: none; }
 .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59,130,246,0.35); }
-.btn-secondary { color: var(--white); background: transparent; border: 1.5px solid rgba(255,255,255,0.25); }
-.btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
-.btn-outline { color: var(--gray-700); background: var(--white); border: 1.5px solid var(--gray-300); }
-.btn-outline:hover { border-color: var(--blue-primary); color: var(--blue-primary); }
 .btn svg { width: 18px; height: 18px; }
 
 /* Header */
 .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; }
-.logo img { height: 40px; width: auto; }
+.logo img { height: 40px; }
 .nav { display: none; }
 .nav-list { display: flex; align-items: center; gap: 40px; }
 .nav-link { font-size: 15px; font-weight: 500; color: var(--gray-600); transition: color var(--transition); }
 .nav-link:hover { color: var(--gray-900); }
 .nav-dropdown { position: relative; }
-.nav-dropdown .nav-link { display: flex; align-items: center; }
+.nav-dropdown .nav-link { display: flex; align-items: center; gap: 4px; }
 .nav-dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 200px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all var(--transition); z-index: 100; }
 .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
 .nav-dropdown-link { display: block; padding: 10px 20px; font-size: 14px; font-weight: 500; color: var(--gray-600); transition: all var(--transition); }
 .nav-dropdown-link:hover { background: var(--gray-50); color: var(--blue-primary); }
-.mobile-nav-child { padding-left: 32px; font-size: 15px; color: var(--gray-500); }
-.mobile-nav-parent { font-weight: 600; color: var(--gray-800); }
-.header-cta { display: flex; align-items: center; gap: 16px; }
+.header-cta { display: none; }
 .header-cta .btn { padding: 10px 20px; font-size: 14px; }
-
-/* Popup Modal */
-.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; padding: 24px; }
-.modal-overlay.active { opacity: 1; visibility: visible; }
-.modal { background: var(--bg-dark); border-radius: var(--radius-xl); max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; transform: translateY(20px) scale(0.95); transition: all 0.3s ease; position: relative; }
-.modal-overlay.active .modal { transform: translateY(0) scale(1); }
-.modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border: none; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition); z-index: 10; }
-.modal-close:hover { background: rgba(255,255,255,0.2); }
-.modal-close svg { width: 20px; height: 20px; color: rgba(255,255,255,0.7); }
-.modal-header { padding: 40px 40px 24px; text-align: center; }
-.modal-header h3 { font-size: 28px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
-.modal-header p { font-size: 15px; color: rgba(255,255,255,0.6); }
-.modal-body { padding: 0 40px 40px; }
-.modal-form { display: flex; flex-direction: column; gap: 20px; }
-.modal-form .form-group { display: flex; flex-direction: column; gap: 8px; }
-.modal-form .form-group label { font-size: 14px; font-weight: 500; color: var(--white); }
-.modal-form .form-group input, .modal-form .form-group select, .modal-form .form-group textarea { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); font-size: 15px; color: var(--white); font-family: inherit; transition: all var(--transition); }
-.modal-form .form-group input::placeholder, .modal-form .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
-.modal-form .form-group input:focus, .modal-form .form-group select:focus, .modal-form .form-group textarea:focus { outline: none; border-color: var(--blue-primary); background: rgba(255,255,255,0.08); }
-.modal-form .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
-.modal-form .form-group select option { background: var(--bg-dark); color: var(--white); }
-.modal-form .form-row { display: grid; gap: 16px; }
-@media (min-width: 480px) { .modal-form .form-row { grid-template-columns: 1fr 1fr; } }
-.modal-trust { text-align: center; margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5); }
 .mobile-menu-btn { display: flex; flex-direction: column; gap: 5px; padding: 8px; }
 .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; transition: all var(--transition); }
-.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--white); padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; }
+.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--white); padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; overflow-y: auto; }
 .mobile-menu.active { transform: translateX(0); }
 .mobile-nav-list { display: flex; flex-direction: column; gap: 4px; }
-.mobile-nav-link { display: block; padding: 16px; font-size: 17px; font-weight: 500; color: var(--gray-700); border-radius: var(--radius-md); }
+.mobile-nav-link { display: block; padding: 16px; font-size: 17px; font-weight: 500; color: var(--gray-700); border-radius: var(--radius-md); transition: background var(--transition); }
 .mobile-nav-link:hover { background: var(--gray-50); }
-.mobile-menu-cta { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+.mobile-nav-child { padding-left: 32px; font-size: 15px; color: var(--gray-500); }
+.mobile-nav-parent { font-weight: 600; color: var(--gray-800); }
+.mobile-menu-cta { margin-top: 32px; }
 .mobile-menu-cta .btn { width: 100%; }
+
+/* Hero */
+.contact-hero { padding: 120px 0 80px; background: var(--bg-dark); position: relative; overflow: hidden; }
+.contact-hero::before { content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, transparent 100%); pointer-events: none; }
+.contact-hero-content { max-width: 700px; position: relative; z-index: 1; }
+.contact-hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; color: var(--white); margin-bottom: 16px; }
+.highlight { color: var(--blue-light); }
+.contact-hero p { font-size: 20px; color: rgba(255,255,255,0.7); margin-bottom: 32px; }
+.contact-trust-badges { display: flex; flex-wrap: wrap; gap: 20px; }
+.contact-trust-badge { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 500; }
+.contact-trust-badge svg { width: 20px; height: 20px; color: var(--teal); flex-shrink: 0; }
+
+/* Contact Section */
+.contact-section { padding: 80px 0; }
+.contact-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+
+/* Form */
+.contact-form-wrapper { background: var(--white); border-radius: var(--radius-2xl); padding: 48px; box-shadow: var(--shadow-lg); }
+.contact-form-header h2 { font-size: 28px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+.contact-form-header p { font-size: 16px; color: var(--gray-600); margin-bottom: 32px; }
+.form-group { margin-bottom: 24px; }
+.form-group label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-900); margin-bottom: 8px; }
+.required { color: var(--blue-primary); margin-left: 2px; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 14px 18px; font-size: 15px; font-family: var(--font); color: var(--gray-900); background: var(--gray-50); border: 1.5px solid var(--gray-300); border-radius: var(--radius-lg); transition: all var(--transition); }
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; background: var(--white); border-color: var(--blue-primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--gray-400); }
+.form-textarea { resize: vertical; min-height: 140px; }
+.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+.form-submit { width: 100%; padding: 16px; font-size: 16px; }
+.form-note { margin-top: 16px; font-size: 13px; color: var(--gray-500); text-align: center; }
+
+/* Sidebar */
+.contact-sidebar { display: flex; flex-direction: column; gap: 24px; }
+.value-box { background: var(--white); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow); }
+.value-box h3 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
+.value-list { display: flex; flex-direction: column; gap: 16px; }
+.value-item { display: flex; align-items: flex-start; gap: 12px; }
+.value-item-icon { width: 24px; height: 24px; background: rgba(59,130,246,0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.value-item-icon svg { width: 16px; height: 16px; color: var(--blue-primary); }
+.value-item-content h4 { font-size: 16px; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
+.value-item-content p { font-size: 14px; color: var(--gray-600); line-height: 1.5; }
+.info-box { background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-dark) 100%); border-radius: var(--radius-xl); padding: 32px; color: var(--white); }
+.info-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.info-box p { font-size: 15px; opacity: 0.9; line-height: 1.6; }
+
+/* Footer */
+.footer { background: var(--bg-dark); padding: 60px 0 32px; color: rgba(255,255,255,0.5); }
+.footer .container > div:first-child { display: grid; grid-template-columns: 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand .logo { margin-bottom: 20px; }
+.footer-brand p { font-size: 15px; line-height: 1.6; max-width: 320px; margin-bottom: 24px; }
+.footer-social { display: flex; gap: 12px; }
+.social-link { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; transition: all var(--transition); }
+.social-link:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+.social-link svg { width: 20px; height: 20px; color: rgba(255,255,255,0.7); }
+.footer-title { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 20px; }
+.footer-links { display: flex; flex-direction: column; gap: 14px; }
+.footer-link { font-size: 15px; color: rgba(255,255,255,0.5); transition: color var(--transition); }
+.footer-link:hover { color: var(--white); }
+.footer-bottom { display: flex; flex-direction: column; gap: 16px; align-items: center; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 14px; }
+.footer-copy { color: rgba(255,255,255,0.5); }
+.footer-legal { display: flex; gap: 24px; }
+.footer-legal a { color: rgba(255,255,255,0.5); transition: color var(--transition); }
+.footer-legal a:hover { color: var(--white); }
+
+/* Responsive */
+@media (min-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr 400px; }
+  .footer .container > div:first-child { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; }
+}
 
 @media (min-width: 1024px) {
   .nav { display: block; }
+  .header-cta { display: flex; gap: 16px; }
   .mobile-menu-btn, .mobile-menu { display: none; }
 }
-@media (max-width: 1023px) {
-  .header-cta { display: none; }
+
+@media (max-width: 767px) {
+  .contact-hero { padding: 100px 0 60px; }
+  .contact-hero h1 { font-size: 36px; }
+  .contact-hero p { font-size: 18px; }
+  .contact-form-wrapper { padding: 32px 24px; }
+  .contact-section { padding: 60px 0; }
 }
-
-/* Page Hero */
-.page-hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.page-hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.5);
-}
-.page-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(30,41,59,0.5) 100%);
-}
-.page-hero .container { position: relative; z-index: 1; width: 100%; }
-.page-hero-content {
-  max-width: 700px;
-  padding: 40px 24px;
-  margin-left: 0;
-}
-.page-hero h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--white); margin-bottom: 24px; }
-.page-hero h1 .highlight { color: var(--blue-light); }
-.page-hero-description { font-size: 20px; line-height: 1.7; color: rgba(255,255,255,0.7); margin-bottom: 40px; }
-.hero-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
-.hero-pill { padding: 10px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-full); font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); }
-.page-hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
-
-/* Section Base */
-.section { padding: 100px 0; }
-.section-light { background: var(--white); }
-.section-gray { background: var(--gray-50); }
-.section-dark { background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-dark-mid) 100%); color: var(--white); }
-
-.section-header { text-align: center; max-width: 680px; margin: 0 auto 64px; }
-.section-tag { display: inline-block; padding: 8px 18px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); font-size: 13px; font-weight: 600; color: var(--blue-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; }
-.section-dark .section-tag { background: rgba(96,165,250,0.15); color: var(--blue-light); }
-.section-header h2 { font-size: clamp(32px, 4vw, 44px); font-weight: 800; letter-spacing: -0.02em; color: var(--gray-900); margin-bottom: 16px; }
-.section-dark .section-header h2 { color: var(--white); }
-.section-header h2 .highlight { color: var(--blue-primary); }
-.section-dark .section-header h2 .highlight { color: var(--blue-light); }
-.section-header p { font-size: 18px; color: var(--gray-500); line-height: 1.7; max-width: 580px; margin: 0 auto; }
-.section-dark .section-header p { color: rgba(255,255,255,0.7); }
-
-/* Services List */
-.services-list { display: grid; gap: 20px; max-width: 900px; margin: 0 auto; }
-.service-list-item { display: flex; align-items: flex-start; gap: 20px; padding: 24px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); transition: all var(--transition); }
-.service-list-item:hover { box-shadow: var(--shadow); border-color: transparent; }
-.service-list-icon { width: 48px; height: 48px; background: rgba(59,130,246,0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.service-list-icon svg { width: 24px; height: 24px; color: var(--blue-primary); }
-.service-list-content h3 { font-size: 17px; font-weight: 600; color: var(--gray-900); margin-bottom: 6px; }
-.service-list-content p { font-size: 15px; color: var(--gray-500); line-height: 1.6; }
-
-@media (min-width: 768px) { .services-list { grid-template-columns: repeat(2, 1fr); } }
-
-/* Audience Cards */
-.audience-cards { display: grid; gap: 20px; }
-.audience-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px; text-align: center; transition: all var(--transition); }
-.audience-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
-.audience-card-icon { width: 56px; height: 56px; background: rgba(59,130,246,0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
-.audience-card-icon svg { width: 28px; height: 28px; color: var(--blue-primary); }
-.audience-card h3 { font-size: 18px; font-weight: 600; color: var(--gray-900); margin-bottom: 8px; }
-.audience-card p { font-size: 15px; color: var(--gray-500); line-height: 1.6; }
-
-@media (min-width: 640px) { .audience-cards { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .audience-cards { grid-template-columns: repeat(3, 1fr); } }
-
-/* Value Props */
-.value-grid { display: grid; gap: 24px; }
-.value-card { position: relative; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 36px; transition: all var(--transition); }
-.value-card:hover { border-color: transparent; box-shadow: var(--shadow-lg); }
-.value-icon { width: 56px; height: 56px; background: rgba(59,130,246,0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-.value-icon svg { width: 28px; height: 28px; color: var(--blue-primary); }
-.value-card h3 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 10px; }
-.value-card p { font-size: 15px; color: var(--gray-500); line-height: 1.65; }
-
-@media (min-width: 640px) { .value-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .value-grid { grid-template-columns: repeat(3, 1fr); } }
-
-/* Testimonials */
-.testimonial-wrapper { max-width: 800px; margin: 0 auto; position: relative; }
-.testimonial-slider { position: relative; overflow: hidden; }
-.testimonial-track { display: flex; transition: transform 0.5s ease; }
-.testimonial-slide { min-width: 100%; }
-.testimonial-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 40px; }
-.testimonial-text { font-size: 17px; color: var(--gray-600); line-height: 1.8; margin-bottom: 32px; }
-.testimonial-author { display: flex; align-items: center; gap: 16px; }
-.testimonial-avatar { width: 56px; height: 56px; background: linear-gradient(135deg, #0ea5e9, #14b8a6); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: var(--white); flex-shrink: 0; }
-.testimonial-info h4 { font-size: 17px; font-weight: 600; color: var(--bg-dark); margin-bottom: 2px; }
-.testimonial-info span { font-size: 14px; color: var(--blue-light); }
-.testimonial-nav { display: flex; justify-content: center; gap: 10px; margin-top: 32px; }
-.testimonial-dot { width: 10px; height: 10px; background: var(--gray-300); border-radius: var(--radius-full); cursor: pointer; transition: all var(--transition); }
-.testimonial-dot.active { width: 32px; background: var(--blue-primary); }
-.testimonial-arrow { position: absolute; top: 50%; transform: translateY(-80%); width: 48px; height: 48px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: all var(--transition); z-index: 10; box-shadow: var(--shadow); }
-.testimonial-arrow svg { width: 24px; height: 24px; color: var(--gray-600); }
-.testimonial-arrow:hover { background: var(--blue-primary); border-color: var(--blue-primary); }
-.testimonial-arrow:hover svg { color: var(--white); }
-.testimonial-prev { left: -24px; }
-.testimonial-next { right: -24px; }
-.testimonial-wrapper:hover .testimonial-arrow { opacity: 1; }
-@media (max-width: 900px) { .testimonial-prev { left: 8px; } .testimonial-next { right: 8px; } }
-
-/* FAQ */
-.faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-.faq-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); overflow: hidden; }
-.faq-question { width: 100%; padding: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left; font-size: 16px; font-weight: 600; color: var(--white); cursor: pointer; transition: all var(--transition); }
-.faq-question:hover { background: rgba(255,255,255,0.03); }
-.faq-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--transition); }
-.faq-icon svg { width: 14px; height: 14px; stroke: var(--white); transition: transform var(--transition); }
-.faq-item.active .faq-icon svg { transform: rotate(180deg); }
-.faq-item.active .faq-answer { max-height: 500px; }
-.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-.faq-answer-inner { padding: 0 24px 28px; font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; }
-
-/* Contact */
-.contact-grid { display: grid; gap: 48px; }
-.contact-info { display: flex; flex-direction: column; gap: 24px; }
-.contact-info h2 { font-size: clamp(32px, 4vw, 40px); font-weight: 800; color: var(--white); margin-bottom: 8px; }
-.contact-info > p { font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.7; }
-.contact-item { display: flex; align-items: center; gap: 16px; }
-.contact-item-icon { width: 48px; height: 48px; background: rgba(59,130,246,0.15); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.contact-item-icon svg { width: 24px; height: 24px; color: var(--blue-light); }
-.contact-item-text h4 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
-.contact-item-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
-
-.contact-form-wrapper { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 40px; }
-.contact-form { display: flex; flex-direction: column; gap: 20px; }
-.form-row { display: grid; gap: 20px; }
-.form-group { display: flex; flex-direction: column; gap: 8px; }
-.form-label { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.8); }
-.form-input, .form-select, .form-textarea { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); font-size: 15px; color: var(--white); transition: all var(--transition); }
-.form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.4); }
-.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--blue-primary); background: rgba(255,255,255,0.08); }
-.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
-.form-select option { background: var(--bg-dark); color: var(--white); }
-.form-textarea { min-height: 120px; resize: vertical; }
-.form-consent { margin-top: 4px; }
-.consent-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
-.consent-label input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--blue-primary); cursor: pointer; }
-.consent-text { font-size: 12px; line-height: 1.5; color: rgba(255,255,255,0.5); }
-.consent-text a { color: var(--blue-light); text-decoration: underline; }
-
-@media (min-width: 768px) { .form-row { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1.2fr; } }
-
-/* Footer */
-.footer { background: var(--bg-dark); padding: 80px 0 40px; }
-.footer-grid { display: grid; gap: 48px; margin-bottom: 64px; }
-.footer-brand p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 20px 0 24px; max-width: 320px; }
-.footer-social { display: flex; gap: 12px; }
-.social-link { width: 40px; height: 40px; background: rgba(255,255,255,0.06); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; transition: all var(--transition); }
-.social-link:hover { background: var(--blue-primary); }
-.social-link svg { width: 18px; height: 18px; color: var(--white); }
-.footer-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; }
-.footer-links { display: flex; flex-direction: column; gap: 14px; }
-.footer-link { font-size: 14px; color: rgba(255,255,255,0.6); transition: color var(--transition); }
-.footer-link:hover { color: var(--white); }
-.footer-bottom { display: flex; flex-direction: column; gap: 16px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); }
-.footer-copy { font-size: 14px; color: rgba(255,255,255,0.4); }
-.footer-legal { display: flex; gap: 32px; }
-.footer-legal a { font-size: 14px; color: rgba(255,255,255,0.4); transition: color var(--transition); }
-.footer-legal a:hover { color: var(--white); }
-
-@media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { 
-  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } 
-  .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
-}
-
-/* Animations */
-.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-  </style>
+</style>
 </head>
 <body>
+
+  <!-- Header -->
   <header class="header">
     <div class="container">
       <div class="header-inner">
@@ -803,11 +674,11 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
               </div>
             </li>
             <li><a href="careers.html" class="nav-link">Careers</a></li>
-            <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
           </ul>
         </nav>
         <div class="header-cta">
-          <button class="btn btn-primary" onclick="openModal()">Get Started</button>
+          <a href="index.html#contact" class="btn btn-primary">Get Started Now</a>
         </div>
         <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
@@ -820,102 +691,135 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <li><a href="admin-executive-va.html" class="mobile-nav-link mobile-nav-child">Admin & Executive VAs</a></li>
         <li><a href="bookkeeping.html" class="mobile-nav-link mobile-nav-child">Virtual Bookkeeping</a></li>
         <li><a href="careers.html" class="mobile-nav-link">Careers</a></li>
-        <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
       </ul>
       <div class="mobile-menu-cta">
-        <button class="btn btn-primary" onclick="openModal(); document.querySelector('.mobile-menu').classList.remove('active');">Get Started</button>
+        <a href="index.html#contact" class="btn btn-primary">Get Started Now</a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Page Hero -->
-    <section class="page-hero">
+    <!-- Hero -->
+    <section class="contact-hero">
       <div class="container">
-        <h1>Contact <span class="highlight">Us</span></h1>
-        <p>Get in touch with our team. We're here to help you find the perfect virtual assistant solution.</p>
+        <div class="contact-hero-content">
+          <h1>Let's Get Your <span class="highlight">Time Back</span></h1>
+          <p>Tell us about your business needs, and we'll match you with the perfect virtual assistant.</p>
+          <div class="contact-trust-badges">
+            <div class="contact-trust-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              No Long-Term Contracts
+            </div>
+            <div class="contact-trust-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Cancel Anytime
+            </div>
+            <div class="contact-trust-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Fast Onboarding
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Contact Form Section -->
-    <section id="contact" class="section section-dark">
+    <section class="contact-section">
       <div class="container">
         <div class="contact-grid">
-          <div class="contact-content reveal">
-            <span class="section-tag">Get In Touch</span>
-            <h2>Ready to Buy Back Your Time?</h2>
-            <p>Tell us about your needs and we'll follow up with next steps.</p>
-            <p class="contact-trust">No long-term contracts. Cancel anytime.</p>
-            <div class="contact-info">
-              <div class="contact-info-item">
-                <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-                <div class="contact-info-text">
-                  <span>Email Us</span>
-                  <strong><a href="/cdn-cgi/l/email-protection#327b5c545d725e575356445b404647535e1c515d5f" style="color: inherit; text-decoration: none;"><span class="__cf_email__" data-cfemail="ce87a0a8a18ea2abafaab8a7bcbabbafa2e0ada1a3">[email&#160;protected]</span></a></strong>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                <div class="contact-info-text">
-                  <span>Call Us</span>
-                  <strong>+1 (717) 468 9915</strong>
-                </div>
-              </div>
+          <!-- Form -->
+          <div class="contact-form-wrapper">
+            <div class="contact-form-header">
+              <h2>Get Started Today</h2>
+              <p>Fill out the form below and we'll be in touch within 24 hours.</p>
             </div>
-          </div>
-          <div class="contact-form-wrapper reveal">
-            <form class="contact-form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="first-name">First Name</label>
-                  <input type="text" id="first-name" placeholder="John" required>
-                </div>
-                <div class="form-group">
-                  <label for="last-name">Last Name</label>
-                  <input type="text" id="last-name" placeholder="Doe" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" placeholder="john@company.com" required>
-                </div>
-                <div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input type="tel" id="phone" placeholder="+1 (717) 468 9915">
-                </div>
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+              <div class="form-group">
+                <label for="name">Full Name<span class="required">*</span></label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="John Smith" required>
               </div>
               <div class="form-group">
-                <label for="service">Service Needed</label>
-                <select id="service">
-                  <option value="">Select a service</option>
-                  <option value="real-estate">Real Estate VA</option>
-                  <option value="admin">Admin & Executive VA</option>
+                <label for="email">Business Email<span class="required">*</span></label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number<span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567" required>
+              </div>
+              <div class="form-group">
+                <label for="service">Service Interest<span class="required">*</span></label>
+                <select id="service" name="service" class="form-select" required>
+                  <option value="">Select a service...</option>
+                  <option value="real-estate">Real Estate Virtual Assistant</option>
+                  <option value="admin-executive">Admin & Executive Virtual Assistant</option>
                   <option value="bookkeeping">Virtual Bookkeeping</option>
-                  <option value="other">Other</option>
+                  <option value="other">Other / Not Sure Yet</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="message">Tell us about your needs</label>
-                <textarea id="message" rows="4" placeholder="What tasks would you like help with?" required></textarea>
+                <label for="message">How can we help you thrive?<span class="required">*</span></label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your business needs and what you're looking for in a virtual assistant..." required></textarea>
               </div>
-              <div class="form-group form-consent">
-                <label class="consent-label">
-                  <input type="checkbox" id="consent" required>
-                  <span class="consent-text">By checking this box, I consent to receive email or SMS from Lead Virtual in accordance with our <a href="terms-of-service.html" target="_blank">Terms of Service</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. Reply STOP to opt-out anytime. Message & data rates may apply.</span>
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary btn-full">Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+              <button type="submit" class="btn btn-primary form-submit">
+                Get Started
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <p class="form-note">We'll respond within 24 hours. No spam, ever.</p>
             </form>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="contact-sidebar">
+            <!-- Why Choose Us -->
+            <div class="value-box">
+              <h3>Why Businesses Choose Us</h3>
+              <div class="value-list">
+                <div class="value-item">
+                  <div class="value-item-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div class="value-item-content">
+                    <h4>No Long-Term Contracts</h4>
+                    <p>Cancel anytime. No commitment required.</p>
+                  </div>
+                </div>
+                <div class="value-item">
+                  <div class="value-item-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div class="value-item-content">
+                    <h4>Fast Onboarding</h4>
+                    <p>Get matched in days, not weeks.</p>
+                  </div>
+                </div>
+                <div class="value-item">
+                  <div class="value-item-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <div class="value-item-content">
+                    <h4>Fully Managed</h4>
+                    <p>We handle recruiting, training, and support.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box">
+              <h3>Questions?</h3>
+              <p>Our team is here to help. We typically respond within 24 hours and can schedule a call to discuss your specific needs.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div>
         <div class="footer-brand">
           <a href="index.html" class="logo"><img src="data:image/webp;base64,UklGRlpsAABXRUJQVlA4WAoAAAAwAAAAogUAUgIASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdC
 IFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAA
@@ -1405,7 +1309,7 @@ NtI5CR5er2NMENhyNHGvHbaXVXhZGSNfU9edNHswsbUBR7uBbwQVg4pHhkUewbsMM6aTpoPf6Bnh
 n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
 4C+2eRkq2FlMJ1qqRedVpUONWsG/cmti9UUS4c48nPDZjKuEof0uy0AAAAA=" alt="Lead Virtual"></a>
           <p>Your trusted partner for virtual assistant services. Scale your business with top-tier talent from around the globe.</p>
-                    <div class="footer-social">
+          <div class="footer-social">
             <a href="https://www.instagram.com/lead.virtual?igsh=MWozb3FvMXhqbmxwZg==" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
             <a href="https://www.linkedin.com/company/lead-virtual/" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
@@ -1420,9 +1324,17 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
           </ul>
         </div>
         <div>
+          <h4 class="footer-title">Services</h4>
+          <ul class="footer-links">
+            <li><a href="real-estate-va.html" class="footer-link">Real Estate VAs</a></li>
+            <li><a href="admin-executive-va.html" class="footer-link">Admin & Executive VAs</a></li>
+            <li><a href="bookkeeping.html" class="footer-link">Virtual Bookkeeping</a></li>
+          </ul>
+        </div>
+        <div>
           <h4 class="footer-title">Support</h4>
           <ul class="footer-links">
-            <li><a href="index.html#contact" class="footer-link">Contact Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
             <li><a href="terms-of-service.html" class="footer-link">Terms of Service</a></li>
             <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
             <li><a href="careers.html" class="footer-link">Careers</a></li>
@@ -1432,201 +1344,20 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
       <div class="footer-bottom">
         <p class="footer-copy">© 2025 Lead Virtual. All rights reserved.</p>
         <div class="footer-legal">
-          <a href="#">Terms of Service</a>
-          <a href="#">Privacy Policy</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
         </div>
       </div>
     </div>
-  </footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Mobile menu
+  </footer>
+
+  <script>
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const menu = document.querySelector('.mobile-menu');
     menuBtn.addEventListener('click', () => menu.classList.toggle('active'));
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
       link.addEventListener('click', () => menu.classList.remove('active'));
     });
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const onScroll = () => {
-      reveals.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 60) {
-          el.classList.add('visible');
-        }
-      });
-    };
-    window.addEventListener('scroll', onScroll);
-    onScroll();
-
-    // Testimonial slider
-    const track = document.querySelector('.testimonial-track');
-    const dots = document.querySelectorAll('.testimonial-dot');
-    const prevBtn = document.querySelector('.testimonial-prev');
-    const nextBtn = document.querySelector('.testimonial-next');
-    const totalSlides = dots.length;
-    let currentSlide = 0;
-    let autoSlideInterval;
-    
-    function goToSlide(index) {
-      currentSlide = index;
-      if (currentSlide >= totalSlides) currentSlide = 0;
-      if (currentSlide < 0) currentSlide = totalSlides - 1;
-      track.style.transform = `translateX(-${currentSlide * 100}%)`;
-      dots.forEach(d => d.classList.remove('active'));
-      dots[currentSlide].classList.add('active');
-    }
-    
-    function nextSlide() {
-      goToSlide(currentSlide + 1);
-    }
-    
-    function prevSlide() {
-      goToSlide(currentSlide - 1);
-    }
-    
-    // Auto-slide every 5 seconds
-    function startAutoSlide() {
-      autoSlideInterval = setInterval(nextSlide, 5000);
-    }
-    
-    function stopAutoSlide() {
-      clearInterval(autoSlideInterval);
-    }
-    
-    // Start auto-slide
-    startAutoSlide();
-    
-    // Pause on hover
-    const wrapper = document.querySelector('.testimonial-wrapper');
-    if (wrapper) {
-      wrapper.addEventListener('mouseenter', stopAutoSlide);
-      wrapper.addEventListener('mouseleave', startAutoSlide);
-    }
-    
-    // Dot navigation
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        goToSlide(index);
-      });
-    });
-    
-    // Arrow navigation
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        const answer = item.querySelector('.faq-answer');
-        const isActive = item.classList.contains('active');
-        
-        document.querySelectorAll('.faq-item').forEach(faq => {
-          faq.classList.remove('active');
-          faq.querySelector('.faq-answer').style.maxHeight = null;
-        });
-        
-        if (!isActive) {
-          item.classList.add('active');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
-      });
-    });
   </script>
-
-  <!-- Get Started Modal -->
-  <div class="modal-overlay" id="getStartedModal">
-    <div class="modal">
-      <button class="modal-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <div class="modal-header">
-        <h3>Talk to a Specialist</h3>
-        <p>Tell us about your needs and we'll follow up with next steps.</p>
-      </div>
-      <div class="modal-body">
-        <form class="modal-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="modal-name">Full Name *</label>
-              <input type="text" id="modal-name" placeholder="John Smith" required>
-            </div>
-            <div class="form-group">
-              <label for="modal-email">Email Address *</label>
-              <input type="email" id="modal-email" placeholder="john@company.com" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="modal-phone">Phone Number *</label>
-              <input type="tel" id="modal-phone" placeholder="+1 (717) 468 9915" required>
-            </div>
-            <div class="form-group">
-              <label for="modal-company">Company</label>
-              <input type="text" id="modal-company" placeholder="Company Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="modal-service">Service Type</label>
-            <select id="modal-service">
-              <option value="">Select a service...</option>
-              <option value="inbox">Inbox & Email Management</option>
-              <option value="calendar">Calendar & Scheduling</option>
-              <option value="customer-service">Customer Service Support</option>
-              <option value="crm">CRM & Data Management</option>
-              <option value="documents">Document Preparation</option>
-              <option value="general">General Admin Support</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="modal-message">How can we help? *</label>
-            <textarea id="modal-message" rows="3" placeholder="Tell us about your needs..." required></textarea>
-          </div>
-          <div class="form-group form-consent">
-            <label class="consent-label">
-              <input type="checkbox" id="modal-consent" required>
-              <span class="consent-text">By checking this box, I consent to receive email or SMS from Lead Virtual in accordance with our <a href="terms-of-service.html" target="_blank">Terms of Service</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. Reply STOP to opt-out anytime. Message & data rates may apply.</span>
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        </form>
-        <p class="modal-trust">No long-term contracts. Cancel anytime.</p>
-      </div>
-    </div>
-  </div>
-  <script>
-    // Modal functionality - globally accessible
-    const modalOverlay = document.getElementById('getStartedModal') || document.getElementById('applicationModal');
-    const modalClose = document.querySelector('.modal-close');
-    const getStartedBtn = document.getElementById('getStartedBtn');
-    
-    window.openModal = function() {
-      if (modalOverlay) {
-        modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    };
-    
-    window.closeModal = function() {
-      if (modalOverlay) {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    };
-    
-    // Close button
-    if (modalClose) {
-      modalClose.addEventListener('click', closeModal);
-    }
-    
-    // Click outside modal to close
-    if (modalOverlay) {
-      modalOverlay.addEventListener('click', function(e) {
-        if (e.target === modalOverlay) {
-          closeModal();
-        }
-      });
-    }
-   </script>
 </body>
 </html>

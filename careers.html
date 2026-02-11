@@ -34,11 +34,8 @@
   --radius-lg: 14px;
   --radius-xl: 20px;
   --radius-2xl: 28px;
-  --radius-full: 9999px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
   --shadow: 0 4px 16px rgba(0,0,0,0.08);
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
-  --shadow-dark: 0 12px 40px rgba(0,0,0,0.4);
   --transition: 0.2s ease;
 }
 
@@ -55,158 +52,123 @@ ul, ol { list-style: none; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; font-size: 15px; font-weight: 600; border-radius: var(--radius-lg); transition: all var(--transition); }
 .btn-primary { color: var(--white); background: var(--blue-primary); }
 .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59,130,246,0.35); }
-.btn-secondary { color: var(--white); background: transparent; border: 1.5px solid rgba(255,255,255,0.25); }
-.btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
-.btn-outline { color: var(--gray-700); background: var(--white); border: 1.5px solid var(--gray-300); }
-.btn-outline:hover { border-color: var(--blue-primary); color: var(--blue-primary); }
 .btn svg { width: 18px; height: 18px; }
-.btn-full { width: 100%; }
 
 /* Header */
 .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; }
-.logo img { height: 40px; width: auto; }
+.logo img { height: 40px; }
 .nav { display: none; }
 .nav-list { display: flex; align-items: center; gap: 40px; }
 .nav-link { font-size: 15px; font-weight: 500; color: var(--gray-600); transition: color var(--transition); }
 .nav-link:hover { color: var(--gray-900); }
 .nav-dropdown { position: relative; }
-.nav-dropdown .nav-link { display: flex; align-items: center; }
+.nav-dropdown .nav-link { display: flex; align-items: center; gap: 4px; }
 .nav-dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 200px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all var(--transition); z-index: 100; }
 .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
 .nav-dropdown-link { display: block; padding: 10px 20px; font-size: 14px; font-weight: 500; color: var(--gray-600); transition: all var(--transition); }
 .nav-dropdown-link:hover { background: var(--gray-50); color: var(--blue-primary); }
-.mobile-nav-child { padding-left: 32px; font-size: 15px; color: var(--gray-500); }
-.mobile-nav-parent { font-weight: 600; color: var(--gray-800); }
-.header-cta { display: flex; align-items: center; gap: 16px; }
+.header-cta { display: none; }
 .header-cta .btn { padding: 10px 20px; font-size: 14px; }
 .mobile-menu-btn { display: flex; flex-direction: column; gap: 5px; padding: 8px; }
-.mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; transition: all var(--transition); }
-.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--white); padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; }
+.mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; }
+.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--white); padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; overflow-y: auto; }
 .mobile-menu.active { transform: translateX(0); }
 .mobile-nav-list { display: flex; flex-direction: column; gap: 4px; }
 .mobile-nav-link { display: block; padding: 16px; font-size: 17px; font-weight: 500; color: var(--gray-700); border-radius: var(--radius-md); }
 .mobile-nav-link:hover { background: var(--gray-50); }
-.mobile-menu-cta { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+.mobile-nav-child { padding-left: 32px; font-size: 15px; color: var(--gray-500); }
+.mobile-nav-parent { font-weight: 600; color: var(--gray-800); }
+.mobile-menu-cta { margin-top: 32px; }
 .mobile-menu-cta .btn { width: 100%; }
 
-@media (min-width: 1024px) {
-  .nav { display: block; }
-  .mobile-menu-btn, .mobile-menu { display: none; }
-}
-@media (max-width: 1023px) {
-  .header-cta { display: none; }
-}
+/* Hero */
+.page-hero { padding: 140px 0 100px; background: var(--bg-dark); position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; top: 0; right: 0; width: 60%; height: 100%; background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, transparent 100%); pointer-events: none; }
+.page-hero-content { max-width: 800px; position: relative; z-index: 1; }
+.page-hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; color: var(--white); margin-bottom: 24px; }
+.highlight { color: var(--blue-light); }
+.page-hero p { font-size: 20px; color: rgba(255,255,255,0.7); margin-bottom: 40px; line-height: 1.6; }
+.page-hero-cta .btn { padding: 16px 32px; font-size: 16px; }
 
-/* Modal */
-.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; padding: 24px; }
-.modal-overlay.active { opacity: 1; visibility: visible; }
-.modal { background: var(--bg-dark); border-radius: var(--radius-xl); max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; transform: translateY(20px) scale(0.95); transition: all 0.3s ease; position: relative; }
-.modal-overlay.active .modal { transform: translateY(0) scale(1); }
-.modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border: none; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition); z-index: 10; }
-.modal-close:hover { background: rgba(255,255,255,0.2); }
-.modal-close svg { width: 20px; height: 20px; color: rgba(255,255,255,0.7); }
-.modal-header { padding: 40px 40px 24px; text-align: center; }
-.modal-header h3 { font-size: 28px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
-.modal-header p { font-size: 15px; color: rgba(255,255,255,0.6); }
-.modal-body { padding: 0 40px 40px; }
-.modal-form { display: flex; flex-direction: column; gap: 20px; }
-.modal-form .form-group { display: flex; flex-direction: column; gap: 8px; }
-.modal-form .form-group label { font-size: 14px; font-weight: 500; color: var(--white); }
-.modal-form .form-group input, .modal-form .form-group select, .modal-form .form-group textarea { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); font-size: 15px; color: var(--white); font-family: inherit; transition: all var(--transition); }
-.modal-form .form-group input::placeholder, .modal-form .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
-.modal-form .form-group input:focus, .modal-form .form-group select:focus, .modal-form .form-group textarea:focus { outline: none; border-color: var(--blue-primary); background: rgba(255,255,255,0.08); }
-.modal-form .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
-.modal-form .form-group select option { background: var(--bg-dark); color: var(--white); }
-.modal-form .form-row { display: grid; gap: 16px; }
-@media (min-width: 480px) { .modal-form .form-row { grid-template-columns: 1fr 1fr; } }
-.modal-trust { text-align: center; margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5); }
-
-/* Hero Section */
-.page-hero { position: relative; min-height: 85vh; display: flex; align-items: center; overflow: hidden; padding-top: 72px; }
-.page-hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-mid) 50%, var(--bg-dark-light) 100%); }
-.page-hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 20%, rgba(59,130,246,0.15) 0%, transparent 50%); }
-.page-hero-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; text-align: center; padding: 60px 0; }
-.page-hero-content h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 24px; }
-.page-hero-content h1 .highlight { background: linear-gradient(135deg, var(--blue-light), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.page-hero-content p { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 32px; }
-.page-hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-/* Section Styles */
+/* Sections */
 .section { padding: 100px 0; }
-.section-dark { background: var(--bg-dark); }
 .section-light { background: var(--gray-50); }
+.section-dark { background: var(--bg-dark); }
 .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-.section-tag { display: inline-block; padding: 8px 16px; background: rgba(59,130,246,0.1); color: var(--blue-primary); font-size: 13px; font-weight: 600; border-radius: var(--radius-full); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
-.section-header h2 { font-size: clamp(32px, 4vw, 44px); font-weight: 800; color: var(--gray-900); margin-bottom: 16px; line-height: 1.2; }
-.section-header h2 .highlight { color: var(--blue-primary); }
-.section-header p { font-size: 18px; color: var(--gray-600); }
+.section-tag { display: inline-block; padding: 8px 16px; background: rgba(59,130,246,0.1); color: var(--blue-primary); font-size: 13px; font-weight: 600; border-radius: 999px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+.section-header h2 { font-size: 44px; font-weight: 800; color: var(--gray-900); margin-bottom: 16px; line-height: 1.2; }
 .section-dark .section-header h2 { color: var(--white); }
+.section-header p { font-size: 18px; color: var(--gray-600); line-height: 1.6; }
 .section-dark .section-header p { color: rgba(255,255,255,0.7); }
 
 /* Benefits Grid */
-.benefits-grid { display: grid; gap: 32px; }
-@media (min-width: 768px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
-.benefit-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 40px 32px; text-align: center; transition: all var(--transition); }
-.benefit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--blue-primary); }
-.benefit-icon { width: 64px; height: 64px; background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(16,185,129,0.1)); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+.benefits-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+.benefit-card { background: var(--white); padding: 40px; border-radius: var(--radius-xl); box-shadow: var(--shadow); text-align: center; }
+.benefit-icon { width: 64px; height: 64px; background: rgba(59,130,246,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
 .benefit-icon svg { width: 32px; height: 32px; color: var(--blue-primary); }
-.benefit-card h3 { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
-.benefit-card p { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+.benefit-card h3 { font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+.benefit-card p { font-size: 16px; color: var(--gray-600); line-height: 1.6; }
 
-/* Looking For Grid */
-.looking-grid { display: grid; gap: 24px; }
-@media (min-width: 640px) { .looking-grid { grid-template-columns: repeat(2, 1fr); } }
-.looking-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 32px; display: flex; gap: 20px; align-items: flex-start; transition: all var(--transition); }
-.looking-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(59,130,246,0.3); }
-.looking-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--blue-primary), var(--teal)); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.looking-icon svg { width: 28px; height: 28px; color: var(--white); }
-.looking-content h3 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-.looking-content p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+/* Looking Grid */
+.looking-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 900px; margin: 0 auto; }
+.looking-card { background: rgba(255,255,255,0.05); padding: 32px; border-radius: var(--radius-xl); border: 1px solid rgba(255,255,255,0.1); display: flex; gap: 24px; align-items: flex-start; }
+.looking-icon { width: 48px; height: 48px; background: rgba(59,130,246,0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.looking-icon svg { width: 24px; height: 24px; color: var(--blue-light); }
+.looking-content h3 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.looking-content p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
 /* Apply CTA */
-.apply-cta { text-align: center; padding: 80px 0; background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark)); }
-.apply-cta h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: var(--white); margin-bottom: 16px; }
-.apply-cta p { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
-.apply-cta .btn { background: var(--white); color: var(--blue-primary); }
+.apply-cta { padding: 100px 0; background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-dark) 100%); text-align: center; }
+.apply-cta h2 { font-size: 44px; font-weight: 800; color: var(--white); margin-bottom: 16px; }
+.apply-cta p { font-size: 20px; color: rgba(255,255,255,0.9); margin-bottom: 40px; }
+.apply-cta .btn { background: var(--white); color: var(--blue-primary); padding: 16px 32px; font-size: 16px; }
 .apply-cta .btn:hover { background: var(--gray-100); transform: translateY(-2px); }
 
 /* Footer */
-.footer { background: var(--bg-dark); padding: 80px 0 40px; }
-.footer-grid { display: grid; gap: 48px; margin-bottom: 64px; }
-@media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
-.footer-brand p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 20px 0 24px; max-width: 320px; }
+.footer { background: var(--bg-dark); padding: 60px 0 32px; color: rgba(255,255,255,0.5); }
+.footer .container > div:first-child { display: grid; grid-template-columns: 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand .logo { margin-bottom: 20px; }
+.footer-brand p { font-size: 15px; line-height: 1.6; max-width: 320px; margin-bottom: 24px; }
 .footer-social { display: flex; gap: 12px; }
-.social-link { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; transition: all var(--transition); }
-.social-link:hover { background: var(--blue-primary); border-color: var(--blue-primary); }
-.social-link svg { width: 18px; height: 18px; color: rgba(255,255,255,0.6); }
-.social-link:hover svg { color: var(--white); }
-.footer-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 20px; }
+.social-link { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; transition: all var(--transition); }
+.social-link:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+.social-link svg { width: 20px; height: 20px; color: rgba(255,255,255,0.7); }
+.footer-title { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 20px; }
 .footer-links { display: flex; flex-direction: column; gap: 14px; }
-.footer-link { font-size: 14px; color: rgba(255,255,255,0.6); transition: color var(--transition); }
+.footer-link { font-size: 15px; transition: color var(--transition); }
 .footer-link:hover { color: var(--white); }
-.footer-bottom { display: flex; flex-direction: column; gap: 16px; align-items: center; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-@media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
-.footer-copy { font-size: 14px; color: rgba(255,255,255,0.5); }
+.footer-bottom { display: flex; flex-direction: column; gap: 16px; align-items: center; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 14px; }
+.footer-copy { color: rgba(255,255,255,0.5); }
 .footer-legal { display: flex; gap: 24px; }
-.footer-legal a { font-size: 14px; color: rgba(255,255,255,0.5); transition: color var(--transition); }
+.footer-legal a { color: rgba(255,255,255,0.5); transition: color var(--transition); }
 .footer-legal a:hover { color: var(--white); }
 
-/* Animations */
-.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* Responsive */
+@media (min-width: 768px) {
+  .benefits-grid { grid-template-columns: repeat(3, 1fr); }
+  .looking-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer .container > div:first-child { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; }
+}
 
-/* Consent */
-.form-consent { margin-top: 8px; }
-.consent-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
-.consent-label input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--blue-primary); flex-shrink: 0; }
-.consent-text { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
-.consent-text a { color: var(--blue-light); text-decoration: underline; }
-  </style>
+@media (min-width: 1024px) {
+  .nav { display: block; }
+  .header-cta { display: flex; }
+  .mobile-menu-btn, .mobile-menu { display: none; }
+}
+
+@media (max-width: 767px) {
+  .page-hero { padding: 110px 0 70px; }
+  .page-hero h1 { font-size: 36px; }
+  .page-hero p { font-size: 18px; }
+  .section { padding: 70px 0; }
+  .section-header h2 { font-size: 32px; }
+  .apply-cta h2 { font-size: 32px; }
+}
+</style>
 </head>
 <body>
-
   <!-- Header -->
   <header class="header">
     <div class="container">
@@ -714,7 +676,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
           </ul>
         </nav>
         <div class="header-cta">
-          <button class="btn btn-primary" onclick="openModal()">Get Started</button>
+          <a href="contact.html" class="btn btn-primary">Get Started Now</a>
         </div>
         <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
@@ -727,123 +689,124 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <li><a href="admin-executive-va.html" class="mobile-nav-link mobile-nav-child">Admin & Executive VAs</a></li>
         <li><a href="bookkeeping.html" class="mobile-nav-link mobile-nav-child">Virtual Bookkeeping</a></li>
         <li><a href="careers.html" class="mobile-nav-link">Careers</a></li>
-        <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
       </ul>
       <div class="mobile-menu-cta">
-        <button class="btn btn-primary" onclick="openModal(); document.querySelector('.mobile-menu').classList.remove('active');">Get Started</button>
+        <a href="contact.html" class="btn btn-primary">Get Started Now</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="page-hero">
-    <div class="page-hero-bg"></div>
-    <div class="container">
-      <div class="page-hero-content">
-        <h1>Grow Your Career, <span class="highlight">Virtually Anywhere.</span></h1>
-        <p>At LeadVirtual, we believe work should fit your life—not the other way around. Join a team that values flexibility, growth, and innovation. Whether you're an experienced professional or just starting out, we offer opportunities to learn, lead, and thrive—all from wherever you choose to work.</p>
-        <div class="page-hero-cta">
-          <a href="#" class="btn btn-primary" onclick="openModal(); return false;">Apply Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <h1>Grow Your Career, <span class="highlight">Virtually Anywhere.</span></h1>
+          <p>At Lead Virtual, we believe work should fit your life—not the other way around. Join a team that values flexibility, growth, and innovation. Whether you're an experienced professional or just starting out, we offer opportunities to learn, lead, and thrive—all from wherever you choose to work.</p>
+          <div class="page-hero-cta">
+            <a href="https://form.asana.com/?k=PrxEJrjNeBBJJMcE6l4IaQ&d=1209772255121272" target="_blank" class="btn btn-primary">Apply Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Why Work With Us -->
-  <section class="section section-light">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Why Join Us</span>
-        <h2>Grow Your Career, <span class="highlight">Virtually Anywhere.</span></h2>
-      </div>
-      <div class="benefits-grid">
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <h3>Work from Anywhere</h3>
-          <p>No commuting, no office politics. Just the freedom to work where you're most productive.</p>
+    <!-- Why Work With Us -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Why Join Us</span>
+          <h2>Why Work <span class="highlight">With Us?</span></h2>
         </div>
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <h3>Career Growth & Learning</h3>
-          <p>Access training, mentorship, and opportunities to level up your skills and career.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <h3>Flexible Work-Life Balance</h3>
-          <p>Set a schedule that works for you at whatever time you want, so you can thrive at work and in life.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Who We're Looking For -->
-  <section class="section section-dark">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Join Our Team</span>
-        <h2 style="color: var(--white);">Who Are We <span class="highlight">Looking For?</span></h2>
-        <p>At LeadVirtual, we believe work should fit your life—not the other way around. Join a team that values flexibility, growth, and innovation. Whether you're an experienced professional or just starting out, we offer opportunities to learn, lead, and thrive—all from wherever you choose to work.</p>
-      </div>
-      <div class="looking-grid">
-        <div class="looking-card reveal">
-          <div class="looking-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="looking-content">
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
             <h3>Work from Anywhere</h3>
             <p>No commuting, no office politics. Just the freedom to work where you're most productive.</p>
           </div>
-        </div>
-        <div class="looking-card reveal">
-          <div class="looking-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Career Growth & Learning</h3>
+            <p>Access training, mentorship, and opportunities to level up your skills and career.</p>
           </div>
-          <div class="looking-content">
-            <h3>Ambitious Professionals</h3>
-            <p>You're always looking for ways to grow, improve your skills, and take your career to the next level.</p>
-          </div>
-        </div>
-        <div class="looking-card reveal">
-          <div class="looking-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div class="looking-content">
-            <h3>Self-Motivated Professionals</h3>
-            <p>You take initiative, stay focused, and meet deadlines without needing constant supervision.</p>
-          </div>
-        </div>
-        <div class="looking-card reveal">
-          <div class="looking-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div class="looking-content">
-            <h3>Effective Communicators</h3>
-            <p>You can clearly express ideas, collaborate seamlessly online, and keep teams aligned.</p>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Flexible Work-Life Balance</h3>
+            <p>Set a schedule that works for you, so you can thrive at work and in life.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Apply CTA Section -->
-  <section class="apply-cta">
-    <div class="container">
-      <h2>Apply For Positions</h2>
-      <p>Reach out with an application!</p>
-      <a href="#" class="btn" onclick="openModal(); return false;">Apply Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-  </section>
+    <!-- Who We're Looking For -->
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Join Our Team</span>
+          <h2>Who Are We <span class="highlight">Looking For?</span></h2>
+          <p>We're seeking talented professionals who are self-motivated, ambitious, and ready to make an impact in a remote-first environment.</p>
+        </div>
+        <div class="looking-grid">
+          <div class="looking-card">
+            <div class="looking-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="looking-content">
+              <h3>Self-Motivated</h3>
+              <p>You take initiative, stay focused, and meet deadlines without needing constant supervision.</p>
+            </div>
+          </div>
+          <div class="looking-card">
+            <div class="looking-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div class="looking-content">
+              <h3>Ambitious</h3>
+              <p>You're always looking for ways to grow, improve your skills, and take your career to the next level.</p>
+            </div>
+          </div>
+          <div class="looking-card">
+            <div class="looking-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="looking-content">
+              <h3>Effective Communicators</h3>
+              <p>You can clearly express ideas, collaborate seamlessly online, and keep teams aligned.</p>
+            </div>
+          </div>
+          <div class="looking-card">
+            <div class="looking-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="looking-content">
+              <h3>Results-Driven</h3>
+              <p>You focus on outcomes, take ownership of your work, and consistently deliver high-quality results.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Apply CTA -->
+    <section class="apply-cta">
+      <div class="container">
+        <h2>Ready to Join Us?</h2>
+        <p>Apply now and start your journey with Lead Virtual!</p>
+        <a href="https://form.asana.com/?k=PrxEJrjNeBBJJMcE6l4IaQ&d=1209772255121272" target="_blank" class="btn">Apply Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div>
         <div class="footer-brand">
           <a href="index.html" class="logo"><img src="data:image/webp;base64,UklGRlpsAABXRUJQVlA4WAoAAAAwAAAAogUAUgIASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdC
 IFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAA
@@ -1333,7 +1296,7 @@ NtI5CR5er2NMENhyNHGvHbaXVXhZGSNfU9edNHswsbUBR7uBbwQVg4pHhkUewbsMM6aTpoPf6Bnh
 n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
 4C+2eRkq2FlMJ1qqRedVpUONWsG/cmti9UUS4c48nPDZjKuEof0uy0AAAAA=" alt="Lead Virtual"></a>
           <p>Your trusted partner for virtual assistant services. Scale your business with top-tier talent from around the globe.</p>
-                    <div class="footer-social">
+          <div class="footer-social">
             <a href="https://www.instagram.com/lead.virtual?igsh=MWozb3FvMXhqbmxwZg==" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
             <a href="https://www.linkedin.com/company/lead-virtual/" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
@@ -1348,9 +1311,17 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
           </ul>
         </div>
         <div>
+          <h4 class="footer-title">Services</h4>
+          <ul class="footer-links">
+            <li><a href="real-estate-va.html" class="footer-link">Real Estate VAs</a></li>
+            <li><a href="admin-executive-va.html" class="footer-link">Admin & Executive VAs</a></li>
+            <li><a href="bookkeeping.html" class="footer-link">Virtual Bookkeeping</a></li>
+          </ul>
+        </div>
+        <div>
           <h4 class="footer-title">Support</h4>
           <ul class="footer-links">
-            <li><a href="index.html#contact" class="footer-link">Contact Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
             <li><a href="terms-of-service.html" class="footer-link">Terms of Service</a></li>
             <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
             <li><a href="careers.html" class="footer-link">Careers</a></li>
@@ -1367,146 +1338,13 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
     </div>
   </footer>
 
-  <!-- Application Modal -->
-  <div class="modal-overlay" id="applicationModal">
-    <div class="modal">
-      <button class="modal-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <div class="modal-header">
-        <h3>Apply Now</h3>
-        <p>Tell us about yourself and we'll be in touch soon.</p>
-      </div>
-      <div class="modal-body">
-        <form class="modal-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="modal-name">Full Name *</label>
-              <input type="text" id="modal-name" placeholder="John Smith" required>
-            </div>
-            <div class="form-group">
-              <label for="modal-email">Email Address *</label>
-              <input type="email" id="modal-email" placeholder="john@email.com" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="modal-phone">Phone Number *</label>
-              <input type="tel" id="modal-phone" placeholder="+1 (555) 123-4567" required>
-            </div>
-            <div class="form-group">
-              <label for="modal-location">Location</label>
-              <input type="text" id="modal-location" placeholder="City, Country">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="modal-position">Position Interest</label>
-            <select id="modal-position">
-              <option value="">Select a position...</option>
-              <option value="real-estate-va">Real Estate VA</option>
-              <option value="admin-va">Admin & Executive VA</option>
-              <option value="bookkeeping">Virtual Bookkeeper</option>
-              <option value="customer-service">Customer Service VA</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="modal-experience">Tell us about your experience *</label>
-            <textarea id="modal-experience" rows="3" placeholder="Share your relevant skills and experience..." required></textarea>
-          </div>
-          <div class="form-group form-consent">
-            <label class="consent-label">
-              <input type="checkbox" id="modal-consent" required>
-              <span class="consent-text">By checking this box, I consent to receive email or SMS from Lead Virtual in accordance with our <a href="terms-of-service.html" target="_blank">Terms of Service</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. Reply STOP to opt-out anytime. Message & data rates may apply.</span>
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Submit Application <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        </form>
-        <p class="modal-trust">We review all applications within 48 hours.</p>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Mobile menu
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const menu = document.querySelector('.mobile-menu');
     menuBtn.addEventListener('click', () => menu.classList.toggle('active'));
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
       link.addEventListener('click', () => menu.classList.remove('active'));
     });
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const onScroll = () => {
-      reveals.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 60) {
-          el.classList.add('visible');
-        }
-      });
-    };
-    window.addEventListener('scroll', onScroll);
-    onScroll();
-
-    // Modal functionality
-    const modalOverlay = document.getElementById('applicationModal');
-    const modalClose = document.querySelector('.modal-close');
-    const getStartedBtn = document.getElementById('getStartedBtn');
-
-    window.openModal = function() {
-      modalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    };
-
-    window.closeModal = function() {
-      modalOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    };
-
-    if (getStartedBtn) {
-      getStartedBtn.addEventListener('click', openModal);
-    }
-
-    if (modalClose) {
-      modalClose.addEventListener('click', closeModal);
-    }
-
-    if (modalOverlay) {
-      modalOverlay.addEventListener('click', function(e) {
-        if (e.target === modalOverlay) {
-    modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    };
-    
-    window.closeModal = function() {
-      if (modalOverlay) {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    };
-    
-    // Close button
-    if (modalClose) {
-      modalClose.addEventListener('click', closeModal);
-    }
-    
-    // Click outside modal to close
-    if (modalOverlay) {
-      modalOverlay.addEventListener('click', function(e) {
-        if (e.target === modalOverlay) {
-          closeModal();
-        }
-      });
-    }
-    
-    // Escape key to close
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
-        closeModal();
-      }
-    });
   </script>
-
 </body>
 </html>
