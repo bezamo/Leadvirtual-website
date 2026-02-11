@@ -145,7 +145,7 @@ ul, ol { list-style: none; }
 .page-hero-content {
   max-width: 700px;
   padding: 40px 24px;
-  margin-left: 0;
+  margin-left: max(24px, calc((100vw - 1400px) / 2 + 24px));
 }
 .page-hero h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--white); margin-bottom: 24px; }
 .page-hero h1 .highlight { color: var(--blue-light); }
@@ -820,7 +820,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <li><a href="admin-executive-va.html" class="mobile-nav-link mobile-nav-child">Admin & Executive VAs</a></li>
         <li><a href="bookkeeping.html" class="mobile-nav-link mobile-nav-child">Virtual Bookkeeping</a></li>
         <li><a href="careers.html" class="mobile-nav-link">Careers</a></li>
-        <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
       </ul>
       <div class="mobile-menu-cta">
         <button class="btn btn-primary" onclick="openModal(); document.querySelector('.mobile-menu').classList.remove('active');">Get Started</button>
@@ -1192,7 +1192,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
               </div>
               <div class="contact-item-text">
                 <h4>Email Us</h4>
-                <p><a href="mailto:info@leadvirtual.com" style="color: inherit; text-decoration: none;"><span class="__cf_email__" data-cfemail="561f383039163a333732203f242223373a7835393b"><strong>info@leadvirtual.com</strong></span></a></p>
+                <p><a href="/cdn-cgi/l/email-protection#751c1b131a3519101411031c07010014195b161a18" style="color: inherit; text-decoration: none;"><span class="__cf_email__" data-cfemail="650c0b030a2509000401130c17111004094b060a08">[email&#160;protected]</span></a></p>
               </div>
             </div>
             <div class="contact-item">
@@ -1767,7 +1767,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <div>
           <h4 class="footer-title">Support</h4>
           <ul class="footer-links">
-            <li><a href="index.html#contact" class="footer-link">Contact Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
             <li><a href="terms-of-service.html" class="footer-link">Terms of Service</a></li>
             <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
             <li><a href="careers.html" class="footer-link">Careers</a></li>
@@ -1782,7 +1782,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         </div>
       </div>
     </div>
-  </footer><script>
+  </footer><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Mobile menu
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const menu = document.querySelector('.mobile-menu');
@@ -1972,14 +1972,3 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         }
       });
     }
-    
-    // Escape key to close
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
-        closeModal();
-      }
-    });
-  </script>
-
-</body>
-</html>
