@@ -7,6 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
   <style>
 :root {
   --bg-dark: #0b1527;
@@ -105,7 +108,7 @@ ul, ol { list-style: none; }
 .modal-trust { text-align: center; margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5); }
 .mobile-menu-btn { display: flex; flex-direction: column; gap: 5px; padding: 8px; }
 .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; transition: all var(--transition); }
-.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--white); padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; }
+.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: #ffffff; padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .mobile-menu.active { transform: translateX(0); }
 .mobile-nav-list { display: flex; flex-direction: column; gap: 4px; }
 .mobile-nav-link { display: block; padding: 16px; font-size: 17px; font-weight: 500; color: var(--gray-700); border-radius: var(--radius-md); }
@@ -832,6 +835,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
+  </header>
     <div class="mobile-menu">
       <ul class="mobile-nav-list">
         <li><a href="index.html" class="mobile-nav-link">Home</a></li>
@@ -846,7 +850,6 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <button class="btn btn-primary" onclick="openModal(); document.querySelector('.mobile-menu').classList.remove('active');">Get Started</button>
       </div>
     </div>
-  </header>
 
   <main>
 

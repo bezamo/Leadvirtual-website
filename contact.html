@@ -7,6 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
   <style>
 /* CSS Variables */
 :root {
@@ -74,7 +77,7 @@ ul { list-style: none; }
 .header-cta .btn { padding: 10px 20px; font-size: 14px; }
 .mobile-menu-btn { display: flex; flex-direction: column; gap: 5px; padding: 8px; }
 .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; transition: all var(--transition); }
-.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--white); padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; overflow-y: auto; }
+.mobile-menu { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: #ffffff; padding: 24px; transform: translateX(100%); transition: transform 0.3s ease; z-index: 999; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .mobile-menu.active { transform: translateX(0); }
 .mobile-nav-list { display: flex; flex-direction: column; gap: 4px; }
 .mobile-nav-link { display: block; padding: 16px; font-size: 17px; font-weight: 500; color: var(--gray-700); border-radius: var(--radius-md); transition: background var(--transition); }
@@ -180,6 +183,14 @@ ul { list-style: none; }
   .info-box { padding: 24px 20px; }
   .contact-form-header h2 { font-size: 22px; }
 }
+/* Consent Checkbox */
+.form-consent { margin-top: 4px; }
+.consent-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+.consent-label input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--blue-primary); cursor: pointer; }
+.consent-text-light { font-size: 13px; line-height: 1.5; color: var(--gray-500); }
+.consent-text-light a { color: var(--blue-primary); text-decoration: underline; }
+.consent-text-light a:hover { color: var(--blue-dark); }
+
 </style>
 </head>
 <body>
@@ -696,6 +707,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
+  </header>
     <div class="mobile-menu">
       <ul class="mobile-nav-list">
         <li><a href="index.html" class="mobile-nav-link">Home</a></li>
@@ -710,7 +722,6 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         <a href="index.html#contact" class="btn btn-primary">Get Started Now</a>
       </div>
     </div>
-  </header>
 
   <main>
     <!-- Hero -->
@@ -773,6 +784,12 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
               <div class="form-group">
                 <label for="message">How can we help you thrive?<span class="required">*</span></label>
                 <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your business needs and what you're looking for in a virtual assistant..." required></textarea>
+              </div>
+              <div class="form-group form-consent">
+                <label class="consent-label">
+                  <input type="checkbox" id="contact-consent" name="consent" required>
+                  <span class="consent-text-light">By checking this box, I consent to receive email or SMS from Lead Virtual in accordance with our <a href="terms-of-service.html" target="_blank">Terms of Service</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. Reply STOP to opt out anytime. Message &amp; data rates may apply. Consent is not a condition of purchase.</span>
+                </label>
               </div>
               <button type="submit" class="btn btn-primary form-submit">
                 Get Started
