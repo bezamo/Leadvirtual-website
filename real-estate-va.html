@@ -1944,44 +1944,22 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
       });
     });
 
-    // Script request modal
-    const scriptModalOverlay = document.getElementById('scriptModal');
-    const scriptModalClose = scriptModalOverlay ? scriptModalOverlay.querySelector('.modal-close') : null;
-
+    // Script request modal — elements looked up lazily so the modal HTML (placed after this script) is available
     window.openScriptModal = function() {
-      if (scriptModalOverlay) {
-        scriptModalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        const emailField = document.getElementById('script-modal-email');
-        if (emailField) emailField.focus();
-      }
+      var overlay = document.getElementById('scriptModal');
+      if (!overlay) return;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      var emailField = document.getElementById('script-modal-email');
+      if (emailField) { emailField.value = ''; emailField.focus(); }
     };
 
     window.closeScriptModal = function() {
-      if (scriptModalOverlay) {
-        scriptModalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+      var overlay = document.getElementById('scriptModal');
+      if (!overlay) return;
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
     };
-
-    if (scriptModalClose) {
-      scriptModalClose.addEventListener('click', closeScriptModal);
-    }
-    if (scriptModalOverlay) {
-      scriptModalOverlay.addEventListener('click', (e) => {
-        if (e.target === scriptModalOverlay) closeScriptModal();
-      });
-    }
-
-    const scriptModalForm = document.getElementById('scriptModalForm');
-    if (scriptModalForm) {
-      scriptModalForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('script-modal-email').value;
-        const modalBody = scriptModalForm.closest('.modal-body');
-        modalBody.innerHTML = '<div style="text-align:center;padding:32px 0;"><svg style="width:52px;height:52px;color:#3b82f6;margin-bottom:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><h3 style="color:#ffffff;font-size:22px;font-weight:800;margin-bottom:10px;">Success!</h3><p style="color:rgba(255,255,255,0.7);font-size:15px;line-height:1.6;">We\'ll send the script to<br><strong style="color:#ffffff;">' + email + '</strong><br>shortly.</p><button class="btn btn-primary" style="margin-top:24px;" onclick="closeScriptModal()">Done</button></div>';
-      });
-    }
   </script>
 
   <!-- Script Request Modal -->
@@ -2102,6 +2080,23 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         if (e.target === modalOverlay) {
           closeModal();
         }
+      });
+    }
+
+    // Script modal event listeners (here because modal HTML is now in DOM)
+    var scriptOverlay = document.getElementById('scriptModal');
+    if (scriptOverlay) {
+      scriptOverlay.querySelector('.modal-close').addEventListener('click', closeScriptModal);
+      scriptOverlay.addEventListener('click', function(e) {
+        if (e.target === scriptOverlay) closeScriptModal();
+      });
+    }
+    var scriptModalForm = document.getElementById('scriptModalForm');
+    if (scriptModalForm) {
+      scriptModalForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('script-modal-email').value;
+        scriptModalForm.closest('.modal-body').innerHTML = '<div style="text-align:center;padding:32px 0;"><svg style="width:52px;height:52px;color:#3b82f6;margin-bottom:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><h3 style="color:#ffffff;font-size:22px;font-weight:800;margin-bottom:10px;">Success!</h3><p style="color:rgba(255,255,255,0.7);font-size:15px;line-height:1.6;">We\'ll send the script to<br><strong style="color:#ffffff;">' + email + '</strong><br>shortly.</p><button class="btn btn-primary" style="margin-top:24px;" onclick="closeScriptModal()">Done</button></div>';
       });
     }
    </script>
