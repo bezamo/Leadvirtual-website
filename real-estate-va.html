@@ -1948,6 +1948,19 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
     window.openScriptModal = function() {
       var overlay = document.getElementById('scriptModal');
       if (!overlay) return;
+      // If success state replaced the form, rebuild it before opening
+      if (!overlay.querySelector('#scriptModalForm')) {
+        var body = overlay.querySelector('.modal-body');
+        if (body) {
+          body.innerHTML = '<form class="modal-form" id="scriptModalForm">' +
+            '<div class="form-group"><label for="script-modal-email">Email Address *</label>' +
+            '<input type="email" id="script-modal-email" placeholder="john@company.com" required></div>' +
+            '<button type="submit" class="btn btn-primary btn-full">Request ' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+            '<path d="M5 12h14M12 5l7 7-7 7"/></svg></button></form>';
+          if (window.LV_bindScriptForm) window.LV_bindScriptForm(document.getElementById('scriptModalForm'));
+        }
+      }
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
       var emailField = document.getElementById('script-modal-email');
@@ -1965,7 +1978,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
   <!-- Script Request Modal -->
   <div class="modal-overlay" id="scriptModal">
     <div class="modal" style="max-width:480px;">
-      <button class="modal-close" aria-label="Close">
+      <button class="modal-close" aria-label="Close" onclick="closeScriptModal()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
       <div class="modal-header">

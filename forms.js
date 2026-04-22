@@ -201,4 +201,7 @@
     var scriptForm = document.getElementById('scriptModalForm');
     if (scriptForm) bindScriptRequestForm(scriptForm);
   });
+
+  // Exposed so openScriptModal can re-bind the form after restoring it from success state
+  window.LV_bindScriptForm = bindScriptRequestForm;
 })();
