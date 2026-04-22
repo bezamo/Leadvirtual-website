@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var BACKEND = ((window.LV_BACKEND || 'https://YOUR_BACKEND_URL').replace(/\/$/, ''));
+  var BACKEND = ((window.LV_BACKEND || 'https://leadvirtual-website-production.up.railway.app').replace(/\/$/, ''));
 
   // ── Utilities ─────────────────────────────────────────────────────────────
 
