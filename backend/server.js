@@ -17,6 +17,7 @@ const {
   PORT = 3000,
 } = process.env;
 
+// Warn on startup if required variables are missing
 ['ASANA_PAT', 'ASANA_PROJECT_GID', 'ASANA_SECTION_NEW_LEADS_GID', 'ASANA_SECTION_SCRIPT_REQUESTS_GID'].forEach((k) => {
   if (!process.env[k]) console.warn(`[warn] Missing env var: ${k}`);
 });
@@ -69,6 +70,7 @@ function buildNotes(fields) {
 }
 
 // ── POST /api/contact ─────────────────────────────────────────────────────
+// Handles: Contact Us form, Get Started modal (all service pages + home)
 app.post('/api/contact', async (req, res) => {
   const { name, email, phone, company, service, message, source } = req.body || {};
   try {
@@ -92,6 +94,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 // ── POST /api/script-request ──────────────────────────────────────────────
+// Handles: "Send me a script" modal on the Real Estate VA page
 app.post('/api/script-request', async (req, res) => {
   const { email } = req.body || {};
   try {
