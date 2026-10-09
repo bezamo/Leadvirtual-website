@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const { Resend } = require('resend');
 
 const app = express();
 
@@ -15,12 +16,18 @@ const {
   ASANA_ASSIGNEE_2_GID,
   ALLOWED_ORIGIN = '*',
   PORT = 3000,
+  RESEND_API_KEY,
+  RESEND_FROM = 'Lead Virtual <noreply@mail.leadvirtual.com>',
+  SCRIPT_DOWNLOAD_URL = 'https://leadvirtual.com/real-estate-va-script.pdf',
 } = process.env;
 
 // Warn on startup if required variables are missing
 ['ASANA_PAT', 'ASANA_PROJECT_GID', 'ASANA_SECTION_NEW_LEADS_GID', 'ASANA_SECTION_SCRIPT_REQUESTS_GID'].forEach((k) => {
   if (!process.env[k]) console.warn(`[warn] Missing env var: ${k}`);
 });
+if (!RESEND_API_KEY) console.warn('[warn] Missing env var: RESEND_API_KEY — script emails will not be sent');
+
+const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 const allowedOrigins = ALLOWED_ORIGIN === '*' ? '*' : ALLOWED_ORIGIN.split(',').map((s) => s.trim());
 app.use(cors({ origin: allowedOrigins, methods: ['GET', 'POST', 'OPTIONS'], allowedHeaders: ['Content-Type'] }));
@@ -60,6 +67,10 @@ async function createAndPlaceTask(name, notes, sectionGid) {
   });
   await asanaPost(`/sections/${sectionGid}/addTask`, { data: { task: data.gid } });
   return data.gid;
+}
+
+async function asanaAddStory(taskGid, text) {
+  await asanaPost(`/tasks/${taskGid}/stories`, { data: { text } });
 }
 
 function buildNotes(fields) {
@@ -102,6 +113,42 @@ app.post('/api/script-request', async (req, res) => {
     const notes = buildNotes({ Email: email });
     const gid = await createAndPlaceTask(taskName, notes, ASANA_SECTION_SCRIPT_REQUESTS_GID);
     console.log(`[script-request] Task ${gid} created for "${email}"`);
+
+    // Send script email via Resend
+    if (resend && email) {
+      try {
+        await resend.emails.send({
+          from: RESEND_FROM,
+          to: email,
+          subject: 'Your Real Estate VA Cold-Call Script',
+          html: `
+            <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#0f172a;">
+              <h2 style="color:#3b82f6;">Here's your script!</h2>
+              <p>Thank you for your interest in Lead Virtual's Real Estate VA services.</p>
+              <p>Click the button below to download your cold-call script:</p>
+              <p style="text-align:center;margin:32px 0;">
+                <a href="${SCRIPT_DOWNLOAD_URL}"
+                   style="background:#3b82f6;color:#fff;padding:14px 28px;border-radius:8px;
+                          text-decoration:none;font-weight:700;font-size:16px;">
+                  Download Script
+                </a>
+              </p>
+              <p>Questions? Reply to this email or reach us at
+                 <a href="mailto:info@leadvirtual.com">info@leadvirtual.com</a>.</p>
+              <p style="color:#64748b;font-size:13px;margin-top:40px;">
+                Lead Virtual LLC &middot; leadvirtual.com
+              </p>
+            </div>
+          `,
+        });
+        await asanaAddStory(gid, `✅ Script email sent to ${email}`);
+        console.log(`[script-request] Email sent to "${email}"`);
+      } catch (emailErr) {
+        console.error('[script-request] Email failed:', emailErr.message);
+        await asanaAddStory(gid, `⚠️ Script email FAILED for ${email}: ${emailErr.message}`).catch(() => {});
+      }
+    }
+
     res.json({ ok: true });
   } catch (err) {
     console.error('[script-request] Error:', err.message);
