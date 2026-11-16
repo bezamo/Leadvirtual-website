@@ -330,6 +330,14 @@ ul, ol { list-style: none; }
 .faq-answer { padding: 0 0 28px; font-size: 15px; color: var(--gray-600); line-height: 1.7; display: none; }
 .faq-item.active .faq-answer { display: block; }
 
+/* Video Testimonials */
+.video-testimonials-wrapper { display: flex; flex-direction: column; align-items: center; gap: 36px; }
+.video-playlist-embed { width: 100%; max-width: 900px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); position: relative; padding-bottom: 56.25%; height: 0; }
+.video-playlist-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--radius-xl); }
+.video-testimonials-cta { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; }
+.video-testimonials-cta p { width: 100%; text-align: center; font-size: 16px; color: var(--gray-500); margin-bottom: 4px; }
+@media (max-width: 600px) { .video-testimonials-cta .btn { width: 100%; justify-content: center; margin-left: 0 !important; } }
+
 /* Popup Modal */
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .modal-overlay.active { opacity: 1; visibility: visible; }
@@ -1342,6 +1350,37 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
             <div class="faq-answer">We'll work quickly to resolve the issue or provide a replacement to ensure continuity.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO TESTIMONIALS -->
+    <section class="section section-light" id="video-testimonials">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Client Stories</span>
+          <h2>Hear From Our <span class="highlight">Clients</span></h2>
+          <p>Real business owners sharing how Lead Virtual VAs transformed their workday.</p>
+        </div>
+        <div class="video-testimonials-wrapper reveal">
+          <div class="video-playlist-embed">
+            <iframe
+              src="https://www.youtube.com/embed/videoseries?list=PL467pcUpnxP2xd0YmVJp2II-04JYAZEza&rel=0&modestbranding=1"
+              title="Lead Virtual Client Testimonials"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="video-testimonials-cta reveal">
+            <p>Join 100+ business owners who've reclaimed their time.</p>
+            <a href="#contact" class="btn btn-primary">Get Your VA Today <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="https://www.youtube.com/@LeadVirtual" target="_blank" rel="noopener" class="btn btn-outline" style="margin-left:12px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;color:#ff0000;"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/></svg>
+              More on YouTube
+            </a>
           </div>
         </div>
       </div>
