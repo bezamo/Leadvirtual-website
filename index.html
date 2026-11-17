@@ -1434,6 +1434,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         </div>
         <div class="video-grid-footer reveal">
           <button id="loadMoreVideos" class="btn btn-outline" onclick="loadMoreVideos()">Load More Stories</button>
+          <button id="showLessVideos" class="btn btn-outline" onclick="showLessVideos()" style="display:none;">Show Less</button>
           <a href="#contact" class="btn btn-primary">Get Your VA Today <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
@@ -2146,8 +2147,14 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
     function loadMoreVideos() {
       var row = document.querySelector('.video-more-row');
       if (row) row.style.display = '';
-      var btn = document.getElementById('loadMoreVideos');
-      if (btn) btn.style.display = 'none';
+      document.getElementById('loadMoreVideos').style.display = 'none';
+      document.getElementById('showLessVideos').style.display = '';
+    }
+    function showLessVideos() {
+      var row = document.querySelector('.video-more-row');
+      if (row) row.style.display = 'none';
+      document.getElementById('loadMoreVideos').style.display = '';
+      document.getElementById('showLessVideos').style.display = 'none';
     }
 
   </script>
