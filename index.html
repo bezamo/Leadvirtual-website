@@ -1408,16 +1408,16 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
               </div>
               <div class="video-card-label">Dave &mdash; Client Testimonial</div>
             </div>
-            <!-- Carey -->
-            <div class="video-card">
+            <!-- Carey — hidden until Load More -->
+            <div class="video-card video-extra" style="display:none;">
               <div class="video-thumb" data-id="v3WmTXBe3VA">
                 <img src="https://img.youtube.com/vi/v3WmTXBe3VA/hqdefault.jpg" alt="Carey – Lead Virtual client testimonial" loading="lazy">
                 <div class="play-overlay"><div class="play-btn-circle"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></div></div>
               </div>
               <div class="video-card-label">Carey &mdash; Client Testimonial</div>
             </div>
-            <!-- Rick -->
-            <div class="video-card">
+            <!-- Rick — hidden until Load More -->
+            <div class="video-card video-extra" style="display:none;">
               <div class="video-thumb" data-id="cv_HIMiYa0Q">
                 <img src="https://img.youtube.com/vi/cv_HIMiYa0Q/hqdefault.jpg" alt="Rick – Lead Virtual client testimonial" loading="lazy">
                 <div class="play-overlay"><div class="play-btn-circle"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></div></div>
@@ -1427,10 +1427,7 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
           </div>
         </div>
         <div class="video-grid-footer reveal">
-          <a href="https://youtube.com/playlist?list=PL467pcUpnxP2xd0YmVJp2II-04JYAZEza" target="_blank" rel="noopener" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;color:#ff0000;flex-shrink:0;"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/></svg>
-            View All Client Stories on YouTube
-          </a>
+          <button id="loadMoreVideos" class="btn btn-outline" onclick="loadMoreVideos()">Load More Stories</button>
           <a href="#contact" class="btn btn-primary">Get Your VA Today <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
@@ -2139,6 +2136,14 @@ n1e6fNMcLCUCHO1OMzNYmqR00e4THnRMuCcmP1g8qsHCoSCjpsOOeAb0J05Y0kbPcyV4t5SbaIic
         thumb.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
       });
     });
+
+    function loadMoreVideos() {
+      document.querySelectorAll('.video-extra').forEach(function(card) {
+        card.style.display = '';
+      });
+      var btn = document.getElementById('loadMoreVideos');
+      if (btn) btn.style.display = 'none';
+    }
 
   </script>
 
